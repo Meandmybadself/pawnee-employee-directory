@@ -11,19 +11,15 @@
   "contributors": [],
   "bugs": {},
   "directories": {
-    "lib": "src",
-    "test": "test/"
+    "lib": "src"
   },
   "engines": {
     "node": "^11.0.0",
     "npm": ">= 3.0.0"
   },
   "scripts": {
-    "test": "npm run eslint && npm run mocha",
-    "eslint": "eslint src/. test/. --config .eslintrc.json",
     "dev": "nodemon --inspect src/",
-    "start": "node src/",
-    "mocha": "mocha test/ --recursive --exit"
+    "start": "node src/"
   },
   "dependencies": {
     "@feathersjs/authentication": "^2.1.16",
