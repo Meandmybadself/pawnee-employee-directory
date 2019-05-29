@@ -10,13 +10,7 @@
 
 ### Server
 
-- `npm run test`
 - `npm run dev`
-- `npm run mocha`
-
-## Testing
-
-## Help
 
 ## Changelog
 
