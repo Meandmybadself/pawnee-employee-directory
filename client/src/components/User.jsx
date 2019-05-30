@@ -10,19 +10,27 @@ class User extends React.Component {
     return (
       <li key={user._id} className="flex flex-row bg-white p-5 m-1">
         <div
-          className="rounded-full w-40 h-40 mr-5"
+          className="rounded-full w-40 h-40 mr-5 shadow-lg"
           style={{
-            backgroundImage: `url(https://via.placeholder.com/100)`,
+            backgroundImage: `url(http://localhost:3030${user.avatarURL})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         />
         <div className="flex flex-col">
           <div className="font-black text-2xl text-orange-600 flex flex-col">{user.name}</div>
-          {has(user, 'department') && <div className="user__department text-xl">{user.department.name}</div>}
-          <div className="user__title text-xl">{user.title}</div>
-          <div className="user__mailStop text-xl">{user.mailStop}</div>
-          <div className="user__phone text-xl">{user.phone}</div>
+          {has(user, 'department') && <div className="text-xl">{user.department.name}</div>}
+          <div className="text-xl">{user.title}</div>
+          <div className="text-xl">
+            <a className="text-orange-600" href={`mailto:${user.email}`}>
+              {user.email}
+            </a>
+          </div>
+          <div className="text-xl">
+            <a className="text-orange-600" href={`tel:${user.phone}`}>
+              {user.phone}
+            </a>
+          </div>
           {currentUser && <img src={pencil} className="h-6 w-6 mt-3" />}
         </div>
       </li>

@@ -40,15 +40,28 @@ module.exports = async app => {
   const userService = app.service('users')
 
   const ranRng = (min, max) => Math.floor(min + Math.random() * (max - min))
-  const makeEmailFromName = name => name.toLowerCase().replace(/\s+/, '.') + '@pawnee.gov'
+  const makeEmailFromName = name => name.toLowerCase().replace(/\s+/g, '.') + '@pawnee.gov'
   const makePhoneNumber = () => `(309) 765-5454 ext. ${ranRng(1000, 9999)}`
   const makeMailStop = () => `Building ${ranRng(1, 5)} - Stop ${ranRng(10, 20)}`
+
+  function slugify(text) {
+    return text
+      .toString()
+      .toLowerCase()
+      .replace(/\s+/g, '-') // Replace spaces with -
+      .replace(/[^\w\-]+/g, '') // Remove all non-word chars
+      .replace(/\-\-+/g, '-') // Replace multiple - with single -
+      .replace(/^-+/, '') // Trim - from start of text
+      .replace(/-+$/, '') // Trim - from end of text
+  }
 
   Promise.all(
     employees.map(async employee => {
       const [name, departmentName, title] = employee
+
       // Check to see if the department exists.
       let department = await departmentService.find({ query: { name: departmentName } })
+      console.log(departmentName, department.total)
       if (!department.total) {
         department = await departmentService.create({ name: departmentName })
       } else {
@@ -65,8 +78,9 @@ module.exports = async app => {
         title,
         isActive: true,
         isAdmin: false,
-        avatarURL: '/assets/images/',
+        avatarURL: `/assets/images/avatars/${slugify(name)}.jpg`,
         departmentRef,
+        password: 'meat-tornado',
       }
     })
   ).then(employees => userService.create(employees))
