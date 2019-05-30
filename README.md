@@ -16,11 +16,13 @@ You can check out the working demo at [pawnee.prmr.ec](http://pawnee.prmr.ec).
 
 The server was written using [Feathers.js](https://feathersjs.com). This made standing up a CRUD server pretty simple. And as a bonus, [authentication came cheap](https://docs.feathersjs.com/api/authentication/server.html) & keeps the riff-raff away from the mutating endpoints. It persists all the data in a MongoDB via Mongoose. I started down the path of using Elasticsearch to get some of that sweet fuzzy searching, but instead, whipped up a [custom search endpoint that allowed for fuzzy regular expressions](https://github.com/Meandmybadself/pawnee-employee-directory/blob/master/server/src/services/users/users.hooks.js#L8).
 
-The server is NGINX + pm2. PM2 watches the repository for pushes to master & rebuilds.
+The server is NGINX + pm2.
 
 ### Client
 
-The client was build with React, using Redux to keep data nice & tidy. CSS was generated using [tailwindcss](https://tailwindcss.com). Normally, I'd opt for something that creates more reusable styles, but used tailwind given the time constraints and the fact that I knew I'd be designing the interface on the fly while developing. For assistance on the Redux side, I used [reselect](https://www.npmjs.com/package/reselect) & [normalizr](https://github.com/paularmstrong/normalizr) to whip the data into shape.
+The responsive client was build with React, using Redux to keep data nice & tidy. CSS was generated using [tailwindcss](https://tailwindcss.com). Normally, I'd opt for something that creates more reusable styles, but used tailwind given the time constraints and the fact that I knew I'd be designing the interface while developing.
+
+For assistance on the Redux side, I used [reselect](https://www.npmjs.com/package/reselect) & [normalizr](https://github.com/paularmstrong/normalizr) to whip the data into shape.
 
 The application was built using [Parcel](https://parceljs.org/).
 
