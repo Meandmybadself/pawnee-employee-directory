@@ -20,7 +20,7 @@ The server is NGINX + pm2. PM2 watches the repository for pushes to master & reb
 
 ### Client
 
-The client was build with React, using Redux to keep data nice & tidy. CSS was generated using [tailwindcss](https://tailwindcss.com). Normally, I'd use something a little more reusable, but given the time constraints, I knew I'd be designing the interface on the fly while developing, and tailwind makes that a breeze. For assistance on the Redux side, I used [reselect](https://www.npmjs.com/package/reselect) & [normalizr](https://github.com/paularmstrong/normalizr) to whip the data into shape.
+The client was build with React, using Redux to keep data nice & tidy. CSS was generated using [tailwindcss](https://tailwindcss.com). Normally, I'd opt for something that creates more reusable styles, but used tailwind given the time constraints and the fact that I knew I'd be designing the interface on the fly while developing. For assistance on the Redux side, I used [reselect](https://www.npmjs.com/package/reselect) & [normalizr](https://github.com/paularmstrong/normalizr) to whip the data into shape.
 
 The application was built using [Parcel](https://parceljs.org/).
 
