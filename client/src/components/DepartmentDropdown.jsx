@@ -7,7 +7,7 @@ class DeparmentDropdown extends React.Component {
     const { departments } = this.props
     return (
       <select onChange={e => this.props.onChange(e.target.value)}>
-        <option className="border-2 p-2">Select Departments</option>
+        <option className="border-2 p-2">Select Department</option>
         {departments &&
           Object.keys(departments).map(id => (
             <option key={id} value={departments[id]._id}>

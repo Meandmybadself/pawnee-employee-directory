@@ -38,7 +38,7 @@ class Search extends React.Component {
       query = { ...query, name: { $search: term } }
     }
 
-    if (departmentRef && departmentRef !== 'Select Departments') {
+    if (departmentRef && departmentRef !== 'Select Department') {
       query = { ...query, departmentRef }
     }
 
@@ -58,16 +58,16 @@ class Search extends React.Component {
     }
 
     return (
-      <div className="h-screen bg-gray-100">
+      <div className="h-screen md:bg-gray-100">
         {this.state.editUserRef && (
           <EditUserModal userRef={this.state.editUserRef} closeModal={() => this.setState({ editUserRef: null })} />
         )}
-        <div className="flex flex-row border bg-gray-300 p-5">
-          <h2 className="font-black text-xl mr-5">Search for an employee:</h2>
+        <div className="flex flex-col md:flex-row border bg-gray-300 p-5">
+          <h2 className="font-black text-sm md:text-xl mr-5 hidden md:block">Search for an employee:</h2>
           <input
             placeholder="Search"
             type="text"
-            className="mr-5 pl-2 font-medium"
+            className="md:mr-5 pl-2 font-medium mb-2 md:mb-0"
             autoFocus
             onChange={e => this.update({ term: e.target.value })}
           />
@@ -75,12 +75,12 @@ class Search extends React.Component {
         </div>
 
         {some(feed.result) && (
-          <div className="flex flex-col p-5">
-            <h2 className="text-5xl font-black">
+          <div className="flex flex-col md:p-5">
+            <h2 className="md:text-5xl font-black text-center m-2 md:m-0">
               {feed.responseDetails.total} Result{feed.responseDetails.total !== 1 && 's'}
             </h2>
             <Pagination responseDetails={feed.responseDetails} onPageClick={skip => this.update({ skip })} />
-            <ul className="flex flex-row flex-wrap justify-around">
+            <ul className="flex flex-col md:flex-row flex-wrap md:justify-around">
               {feed.result.map(userRef => (
                 <User userRef={userRef} key={userRef} onEditClick={editUserRef => this.setState({ editUserRef })} />
               ))}

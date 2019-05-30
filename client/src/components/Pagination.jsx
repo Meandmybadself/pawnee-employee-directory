@@ -15,14 +15,18 @@ const Pagination = ({ responseDetails, onPageClick }) => {
         key={i}
         className={Classnames(
           'border-orange-500',
+          'bg-white',
           'border-2',
           'cursor-pointer',
           'flex',
           'items-center',
           'justify-center',
-          'w-10',
-          'h-10',
-          'text-xl',
+          'w-6',
+          'h-6',
+          'md:w-12',
+          'md:h-12',
+          'text-sm',
+          'md:text-xl',
           'font-black',
           'rounded-full',
           'mr-2',
@@ -46,6 +50,6 @@ const Pagination = ({ responseDetails, onPageClick }) => {
     )
   }
 
-  return <ul className="flex flex-row align-middle justify-center">{pages}</ul>
+  return <ul className="flex flex-row align-middle justify-center mb-2 md:mb-0">{pages}</ul>
 }
 export default Pagination

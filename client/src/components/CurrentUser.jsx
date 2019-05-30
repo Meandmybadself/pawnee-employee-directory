@@ -6,7 +6,7 @@ const CurrentUser = ({ currentUser }) => {
   if (currentUser && currentUser.name) {
     return (
       <div className="flex flex-row align-middle">
-        <div className="mr-3 text-s flex items-center">Welcome back, {currentUser.name}</div>
+        <div className="mr-3 text-xs md:text-sm flex items-center">Welcome back, {currentUser.name}</div>
         <div className={constants.button} onClick={() => feathers.logout()}>
           Sign Out
         </div>
