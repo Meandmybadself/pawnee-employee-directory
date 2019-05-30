@@ -4,7 +4,7 @@ Why, hello there & thank you for taking time to check out my Postlight Code Chal
 
 ## Overview
 
-When I was sketching out the initial plans for the challenge, I deliberated on several different subjects and landed on the employees of Pawnee, Indiana, the fictional city from [Parks & Recreation](https://www.nbc.com/parks-and-recreation)
+When I was [sketching out the initial plans for the challenge](sketch.jpg), I deliberated on several different fictional subjects and landed on the employees of Pawnee, Indiana, the city from [Parks & Recreation](https://www.nbc.com/parks-and-recreation).
 
 ## Demo
 
