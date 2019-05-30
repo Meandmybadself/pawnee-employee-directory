@@ -51,7 +51,11 @@ class Search extends React.Component {
   }
 
   render() {
-    const { feed, departments } = this.props
+    const { feed } = this.props
+
+    if (!feed) {
+      return <div className="h-screen bg-gray-100" />
+    }
 
     return (
       <div className="h-screen bg-gray-100">
@@ -77,8 +81,8 @@ class Search extends React.Component {
             </h2>
             <Pagination responseDetails={feed.responseDetails} onPageClick={skip => this.update({ skip })} />
             <ul className="flex flex-row flex-wrap justify-around">
-              {feed.result.map(user => (
-                <User user={user} key={user._id} onEditClick={editUserRef => this.setState({ editUserRef })} />
+              {feed.result.map(userRef => (
+                <User userRef={userRef} key={userRef} onEditClick={editUserRef => this.setState({ editUserRef })} />
               ))}
             </ul>
             <Pagination responseDetails={feed.responseDetails} onPageClick={skip => this.update({ skip })} />
@@ -90,10 +94,9 @@ class Search extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const getUsersForFeed = selectors.getUsersForFeedFactory()
   return {
     departments: selectors.assertDepartments(state),
-    feed: getUsersForFeed(state, 'searchFeed'),
+    feed: state.feeds.user.searchFeed,
   }
 }
 

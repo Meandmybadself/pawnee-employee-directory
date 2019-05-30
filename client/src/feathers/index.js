@@ -12,17 +12,7 @@ const client = feathers()
   .configure(restClient.axios(axios))
   .configure(auth({ storage: window.localStorage }))
 
-client.on('authenticated', () => {
-  console.log('authenticated')
-})
-
-client.on('logout', () => {
-  console.log('logged out')
-})
-
-client.on('reauthentication-error', () => {
-  console.log('reauth error')
-})
+client.on('reauthentication-error', () => logout())
 
 const authenticate = async (email = null, password = null) => {
   const authObj = email && password ? { email, password, strategy: 'local' } : {}

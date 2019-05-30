@@ -1,7 +1,8 @@
-import feathers from '../feathers/index'
+import feathers from '../feathers'
 import { normalize, schema } from 'normalizr'
 import ActionTypes from '../types'
-import { omit } from 'lodash'
+import { omit, get } from 'lodash'
+import store from '../store'
 
 const userListSchema = new schema.Entity('users', {}, { idAttribute: '_id' })
 
@@ -11,7 +12,7 @@ const userListSchema = new schema.Entity('users', {}, { idAttribute: '_id' })
  * @param query
  */
 
-const searchForUsers = (feedId, query) => dispatch => {
+const searchForUsers = (feedId, query) => dispatch =>
   feathers.client
     .service('users')
     .find({ query })
@@ -22,9 +23,16 @@ const searchForUsers = (feedId, query) => dispatch => {
         entities: { users },
         result,
       } = normalized
-      dispatch(usersFeedEntities(feedId, result, users, responseDetails))
+      return dispatch(usersFeedEntities(feedId, result, users, responseDetails))
     })
-}
+
+const updateUser = user => dispatch =>
+  feathers.client
+    .service('users')
+    .update(user._id, user)
+    .then(newUser => {
+      dispatch(userEntity(user))
+    })
 
 const usersFeedEntities = (feedId, result, users, responseDetails) => ({
   type: ActionTypes.UsersReceived,
@@ -36,6 +44,27 @@ const usersFeedEntities = (feedId, result, users, responseDetails) => ({
   },
 })
 
+const userEntity = user => ({
+  type: ActionTypes.UserReceived,
+  payload: {
+    user,
+  },
+})
+
+const assertUser = (state, userRef) => {
+  const user = get(state, `entities.users[${userRef}]`)
+  if (user) {
+    return user
+  }
+
+  feathers.client
+    .service('users')
+    .get(userRef)
+    .then(user => store.dispatch({ type: ActionTypes.UserReceived, payload: { user } }))
+}
+
 export default {
   searchForUsers,
+  updateUser,
+  assertUser,
 }

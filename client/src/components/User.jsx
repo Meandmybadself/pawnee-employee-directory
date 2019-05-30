@@ -1,13 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import pencil from '../assets/images/pencil.png'
-import { has } from 'lodash'
+import { get, keyBy } from 'lodash'
+import ActionCreators from '../actions'
 
 class User extends React.Component {
   render() {
-    const { user, currentUser, onEditClick } = this.props
+    const { userRef, user, currentUser, onEditClick, departments } = this.props
 
-    console.log(user.name, user.department)
+    if (!this.props.user) {
+      return <li key={userRef} />
+    }
+
+    const department = get(departments, user.departmentRef)
 
     return (
       <li key={user._id} className="flex flex-row bg-white p-5 m-1">
@@ -21,7 +26,7 @@ class User extends React.Component {
         />
         <div className="flex flex-col">
           <div className="font-black text-2xl text-orange-600 flex flex-col">{user.name}</div>
-          {has(user, 'department') && <div className="text-xl">{user.department.name}</div>}
+          {department && <div className="text-xl">{department.name}</div>}
           <div className="text-xl">{user.title}</div>
           <div className="text-base">
             <a className="text-orange-600" href={`mailto:${user.email}`}>
@@ -47,8 +52,10 @@ class User extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, props) => ({
   currentUser: state.currentUser,
+  user: ActionCreators.assertUser(state, props.userRef),
+  departments: keyBy(state.entities.departments, '_id'),
 })
 
 export default connect(mapStateToProps)(User)
