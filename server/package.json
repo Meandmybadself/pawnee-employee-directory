@@ -19,7 +19,8 @@
   },
   "scripts": {
     "dev": "nodemon --inspect src/",
-    "start": "node src/"
+    "start": "node src/",
+    "promote": "rsync -av . mn:/var/www/pawnee.prmr.ec/ --exclude 'node_modules' --exclude '.git' --exclude 'package-lock.json' && ssh mn 'cd /var/www/pawnee.prmr.ec/ && npm install && pm2 restart pawnee'"
   },
   "dependencies": {
     "@feathersjs/authentication": "^2.1.16",

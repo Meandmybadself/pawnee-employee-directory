@@ -58,7 +58,7 @@ class Search extends React.Component {
     }
 
     return (
-      <div className="h-screen md:bg-gray-100">
+      <div className="md:bg-gray-100">
         {this.state.editUserRef && (
           <EditUserModal userRef={this.state.editUserRef} closeModal={() => this.setState({ editUserRef: null })} />
         )}

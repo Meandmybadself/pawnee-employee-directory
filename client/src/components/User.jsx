@@ -19,7 +19,7 @@ class User extends React.Component {
         <div
           className="rounded-full w-20 h-20 md:w-40 md:h-40 mr-5 shadow-lg"
           style={{
-            backgroundImage: `url(http://localhost:3030${user.avatarURL})`,
+            backgroundImage: `url(//pawnee.prmr.ec${user.avatarURL})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
