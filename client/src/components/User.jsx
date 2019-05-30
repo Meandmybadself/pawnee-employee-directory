@@ -5,7 +5,9 @@ import { has } from 'lodash'
 
 class User extends React.Component {
   render() {
-    const { user, currentUser } = this.props
+    const { user, currentUser, onEditClick } = this.props
+
+    console.log(user.name, user.department)
 
     return (
       <li key={user._id} className="flex flex-row bg-white p-5 m-1">
@@ -21,17 +23,24 @@ class User extends React.Component {
           <div className="font-black text-2xl text-orange-600 flex flex-col">{user.name}</div>
           {has(user, 'department') && <div className="text-xl">{user.department.name}</div>}
           <div className="text-xl">{user.title}</div>
-          <div className="text-xl">
+          <div className="text-base">
             <a className="text-orange-600" href={`mailto:${user.email}`}>
               {user.email}
             </a>
           </div>
-          <div className="text-xl">
+          <div className="text-base">
             <a className="text-orange-600" href={`tel:${user.phone}`}>
               {user.phone}
             </a>
           </div>
-          {currentUser && <img src={pencil} className="h-6 w-6 mt-3" />}
+          {currentUser && (
+            <img
+              onClick={() => onEditClick(user._id)}
+              src={pencil}
+              className="h-6 w-6 mt-3 cursor-pointer"
+              title="edit"
+            />
+          )}
         </div>
       </li>
     )

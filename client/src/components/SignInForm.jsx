@@ -7,7 +7,7 @@ class SignInForm extends React.Component {
     super(props)
     this.state = {
       email: 'tom.haverford@pawnee.gov',
-      password: 'butts',
+      password: 'meat-tornado',
     }
   }
 
@@ -20,13 +20,13 @@ class SignInForm extends React.Component {
         }}
       >
         <input
-          className="text-xs pl-1 py-1 shadow-inner shadow border-orange-600 border border-r-0"
+          className="text-sm pl-1 py-2 shadow-inner shadow border-orange-600 border border-r-0 w-48"
           type="text"
           value={this.state.email}
           onChange={e => this.setState({ email: e.target.value })}
         />
         <input
-          className="text-xs p-1 shadow-inner shadow border-orange-600 border border-r-0"
+          className="text-sm p-2 shadow-inner shadow border-orange-600 border border-r-0"
           type="password"
           value={this.state.password}
           onChange={e => this.setState({ password: e.target.value })}

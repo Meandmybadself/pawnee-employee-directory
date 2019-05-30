@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import ActionCreators from '../actions'
@@ -6,30 +6,42 @@ import { pick, some } from 'lodash'
 import selectors from '../selectors'
 import User from './User'
 import Pagination from './Pagination'
+import EditUserModal from './EditUserModal'
+import DepartmentDropdown from './DepartmentDropdown'
 
-class Search extends Component {
+class Search extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       term: '',
       skip: 0,
-      departmentRef: undefined,
+      departmentRef: null,
+      editUserRef: null, // '5cef71d2323f1d8470fedbce',
     }
   }
 
   update(obj) {
+    // If we're changing the term, make sure we revert to page 1.
+    if (obj.term && obj.term !== this.state.term) {
+      obj.skip = 0
+    }
     this.setState(obj, () => this.updateSearch())
   }
 
   updateSearch() {
     const { skip, term, departmentRef } = this.state
 
-    let query = { $skip: skip, $sort: { name: 1 }, departmentRef }
+    let query = { $skip: skip, $sort: { name: 1 } }
 
     if (term) {
       // If we have a search term, it needs to use $search to trigger a regex search on the server.
       query = { ...query, name: { $search: term } }
     }
+
+    if (departmentRef && departmentRef !== 'Select Departments') {
+      query = { ...query, departmentRef }
+    }
+
     this.props.searchForUsers('searchFeed', query)
   }
 
@@ -43,6 +55,9 @@ class Search extends Component {
 
     return (
       <div className="h-screen bg-gray-100">
+        {this.state.editUserRef && (
+          <EditUserModal userRef={this.state.editUserRef} closeModal={() => this.setState({ editUserRef: null })} />
+        )}
         <div className="flex flex-row border bg-gray-300 p-5">
           <h2 className="font-black text-xl mr-5">Search for an employee:</h2>
           <input
@@ -52,15 +67,7 @@ class Search extends Component {
             autoFocus
             onChange={e => this.update({ term: e.target.value })}
           />
-          <select onChange={e => this.update({ departmentRef: e.target.value })}>
-            <option>Select Departments</option>
-            {departments &&
-              Object.keys(departments).map(id => (
-                <option key={id} value={departments[id]._id}>
-                  {departments[id].name}
-                </option>
-              ))}
-          </select>
+          <DepartmentDropdown onChange={departmentRef => this.update({ departmentRef })} />
         </div>
 
         {some(feed.result) && (
@@ -71,7 +78,7 @@ class Search extends Component {
             <Pagination responseDetails={feed.responseDetails} onPageClick={skip => this.update({ skip })} />
             <ul className="flex flex-row flex-wrap justify-around">
               {feed.result.map(user => (
-                <User user={user} key={user._id} />
+                <User user={user} key={user._id} onEditClick={editUserRef => this.setState({ editUserRef })} />
               ))}
             </ul>
             <Pagination responseDetails={feed.responseDetails} onPageClick={skip => this.update({ skip })} />

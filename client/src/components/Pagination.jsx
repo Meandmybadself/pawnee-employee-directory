@@ -14,8 +14,8 @@ const Pagination = ({ responseDetails, onPageClick }) => {
       <li
         key={i}
         className={Classnames(
-          'border-orange-600',
-          'border',
+          'border-orange-500',
+          'border-2',
           'cursor-pointer',
           'flex',
           'items-center',
@@ -26,6 +26,9 @@ const Pagination = ({ responseDetails, onPageClick }) => {
           'font-black',
           'rounded-full',
           'mr-2',
+          'hover:bg-orange-600',
+          'hover:text-white',
+          'shadow-md',
           {
             'pointer-events-none': isCurrentPage,
           },
@@ -34,9 +37,6 @@ const Pagination = ({ responseDetails, onPageClick }) => {
           },
           {
             'text-white': isCurrentPage,
-          },
-          {
-            'border-black': isCurrentPage,
           }
         )}
         onClick={e => onPageClick(skipTo)}

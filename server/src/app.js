@@ -33,7 +33,7 @@ app.configure(services)
 
 // Configure a middleware for 404s and the error handler
 app.use(express.notFound())
-app.use(express.errorHandler({ logger }))
+// app.use(express.errorHandler({ logger }))
 
 // I'm the fixtures that add the initial employees!
 // app.configure(require('./utils/add-employees'))
