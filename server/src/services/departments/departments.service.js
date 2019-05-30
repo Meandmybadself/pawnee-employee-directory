@@ -5,11 +5,13 @@ const hooks = require('./departments.hooks')
 
 module.exports = function(app) {
   const Model = createModel(app)
-  const paginate = app.get('paginate')
 
   const options = {
     Model,
-    paginate,
+    paginate: {
+      default: 50,
+      max: 50,
+    },
   }
 
   // Initialize our service with any options it requires

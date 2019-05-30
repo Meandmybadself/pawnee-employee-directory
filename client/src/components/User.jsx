@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import pencil from '../assets/images/pencil.png'
+import { has } from 'lodash'
 
 class User extends React.Component {
   render() {
@@ -18,7 +19,7 @@ class User extends React.Component {
         />
         <div className="flex flex-col">
           <div className="font-black text-2xl text-orange-600 flex flex-col">{user.name}</div>
-          <div className="user__department text-xl">{user.department.name}</div>
+          {has(user, 'department') && <div className="user__department text-xl">{user.department.name}</div>}
           <div className="user__title text-xl">{user.title}</div>
           <div className="user__mailStop text-xl">{user.mailStop}</div>
           <div className="user__phone text-xl">{user.phone}</div>
