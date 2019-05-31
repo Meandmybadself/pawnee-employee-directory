@@ -27,12 +27,12 @@ class SignInForm extends React.Component {
           onChange={e => this.setState({ email: e.target.value })}
         />
         <input
-          className="text-xs md:text-sm px-4 md:p-2 shadow-inner shadow border-orange-600 border border-r-0 flex-1"
+          className="text-xs md:text-sm md:p-2 shadow-inner shadow border-orange-600 border border-r-0 flex-1"
           type="password"
           value={this.state.password}
           onChange={e => this.setState({ password: e.target.value })}
         />
-        <input className={`${constants.button} flex-1`} type="submit" value="Sign In" />
+        <input className={`${constants.button} flex-1 px-4`} type="submit" value="Sign In" />
       </form>
     )
   }

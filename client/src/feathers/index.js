@@ -6,7 +6,7 @@ import store from '../store'
 import ActionTypes from '../types'
 
 // Setup feathers as a rest client.
-const restClient = rest()
+const restClient = rest('http://localhost:3030')
 
 const client = feathers()
   .configure(restClient.axios(axios))
