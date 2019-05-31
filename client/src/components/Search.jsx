@@ -54,7 +54,7 @@ class Search extends React.Component {
     const { feed } = this.props
 
     if (!feed) {
-      return <div className="h-screen bg-gray-100" />
+      return <div className="bg-gray-100" />
     }
 
     return (
@@ -67,7 +67,7 @@ class Search extends React.Component {
           <input
             placeholder="Search"
             type="text"
-            className="md:mr-5 pl-2 font-medium mb-2 md:mb-0"
+            className="md:mr-5 pl-2 font-medium mb-2 md:mb-0 shadow-inner"
             autoFocus
             onChange={e => this.update({ term: e.target.value })}
           />
@@ -80,7 +80,7 @@ class Search extends React.Component {
               {feed.responseDetails.total} Result{feed.responseDetails.total !== 1 && 's'}
             </h2>
             <Pagination responseDetails={feed.responseDetails} onPageClick={skip => this.update({ skip })} />
-            <ul className="flex flex-col md:flex-row flex-wrap md:justify-around">
+            <ul className="flex flex-col md:flex-row flex-wrap md:justify-around mb-6">
               {feed.result.map(userRef => (
                 <User userRef={userRef} key={userRef} onEditClick={editUserRef => this.setState({ editUserRef })} />
               ))}

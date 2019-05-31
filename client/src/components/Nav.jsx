@@ -13,11 +13,8 @@ class Nav extends React.Component {
 
   render() {
     return (
-      <div
-        className="border-gray-200 flex flex-row items-center justify-end p-3"
-        style={{ backgroundColor: constants.headerBG }}
-      >
-        <div className="flex flex-col md:flex-row items-center">
+      <div className="border-gray-200 flex flex-row items-center justify-center lg:justify-end p-3 bg-gray-200">
+        <div className="flex flex-col justify-end md:flex-row items-center w-full xs:w-1/3">
           {this.props.currentUser && <CurrentUser currentUser={this.props.currentUser} />}
           {!this.props.currentUser && <SignInForm />}
         </div>
