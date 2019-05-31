@@ -41,6 +41,6 @@ Users initially enter the site as a normal Pawneean, granting standard searchabi
 
 ## V2 (aka, the stuff I didn't get to)
 
-- _Creating users_ – A trained eye will note that the system is [set up with a client-side router](https://github.com/Meandmybadself/pawnee-employee-directory/blob/master/client/src/routes/index.jsx), but alas, only one real route. The plan was to make a route endpoint for creating users, but pencils are down.
-- _Image uploading_ – This would be pretty straight forward using a client library like [filepond](https://github.com/pqina/react-filepond) & an Express endpoint utilizing [multer](https://github.com/expressjs/multer).
-- _Testing_ - Some unit tests alongside some Cypress tests would wrap things up nicely.
+* *Creating users* – A trained eye will note that the system is [set up with a client-side router](https://github.com/Meandmybadself/pawnee-employee-directory/blob/master/client/src/routes/index.jsx), but alas, only one real route. The plan was to make a route endpoint for creating users, but pencils are down.
+* *Image uploading* – This would be pretty straight forward using a client library like [filepond](https://github.com/pqina/react-filepond) & an Express endpoint utilizing [multer](https://github.com/expressjs/multer).
+* *Testing* - Some unit tests alongside some Cypress tests would wrap things up nicely.
