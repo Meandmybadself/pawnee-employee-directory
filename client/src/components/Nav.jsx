@@ -1,30 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import feathers from '../feathers'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import CurrentUser from './CurrentUser'
 import SignInForm from './SignInForm'
-import constants from '../constants'
 
-class Nav extends React.Component {
-  componentDidMount() {
-    // Try to auth from stored creds.
-    feathers.authenticate()
-  }
+const Nav = () => {
+  useEffect(() => {
+    if (!user) {
+      // Try to auth from stored creds.
+      feathers.authenticate()
+    }
+  })
 
-  render() {
-    return (
-      <div className="border-gray-200 flex flex-row items-center justify-center lg:justify-end p-3 bg-gray-200">
-        <div className="flex flex-col justify-end md:flex-row items-center w-full sm:w-1/3">
-          {this.props.currentUser && <CurrentUser currentUser={this.props.currentUser} />}
-          {!this.props.currentUser && <SignInForm />}
-        </div>
+  const user = useSelector(state => state.currentUser)
+
+  return (
+    <div className="border-gray-200 flex flex-row items-center justify-center lg:justify-end p-3 bg-gray-200">
+      <div className="flex flex-col justify-end md:flex-row items-center w-full sm:w-1/2">
+        {user && <CurrentUser currentUser={user} />}
+        {!user && <SignInForm />}
       </div>
-    )
-  }
+    </div>
+  )
 }
 
-const mapStateToProps = state => ({
-  currentUser: state.currentUser,
-})
-
-export default connect(mapStateToProps)(Nav)
+export default Nav

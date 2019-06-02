@@ -16,7 +16,7 @@ class Search extends React.Component {
       term: '',
       skip: 0,
       departmentRef: null,
-      editUserRef: null, // '5cef71d2323f1d8470fedbce',
+      editUserRef: null,
     }
   }
 
@@ -76,7 +76,7 @@ class Search extends React.Component {
 
         {some(feed.result) && (
           <div className="flex flex-col md:p-5">
-            <h2 className="md:text-5xl font-black text-center m-2 md:m-0">
+            <h2 className="md:text-4xl font-black text-center m-2 md:m-0">
               {feed.responseDetails.total} Result{feed.responseDetails.total !== 1 && 's'}
             </h2>
             <Pagination responseDetails={feed.responseDetails} onPageClick={skip => this.update({ skip })} />
@@ -86,6 +86,11 @@ class Search extends React.Component {
               ))}
             </ul>
             <Pagination responseDetails={feed.responseDetails} onPageClick={skip => this.update({ skip })} />
+          </div>
+        )}
+        {!some(feed.result) && (
+          <div className="flex flex-col md:p-5">
+            <h2 className="md:text-4xl font-black text-center m-2 md:m-0">0 Results</h2>
           </div>
         )}
       </div>

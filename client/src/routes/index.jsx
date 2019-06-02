@@ -7,7 +7,7 @@ import Search from '../components/Search'
 import NoMatch from '../components/NoMatch'
 
 const routes = (
-  <div className="container mx-auto">
+  <div className="container mx-auto shadow-xl ">
     <Header />
     <Nav />
     <Switch>
