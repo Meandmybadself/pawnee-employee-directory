@@ -1,17 +1,12 @@
 # Pawnee Employee Directory
 
-Why, hello there.
-You look nice today. Did you do something new with your hair?
-
-Thank you for taking time to check out my Postlight Code Challenge.
-
 ## Overview
 
 When I was [researching](https://github.com/natotthomer/postlightproject) [the](https://github.com/jjcav84/employee-challenge) [landscape](https://github.com/nkarnick/employee-directory) and [sketching out the initial plans for the challenge](sketch.jpg), I deliberated on several different fictional subjects and landed on the employees of Pawnee, Indiana, the city from [Parks & Recreation](https://www.nbc.com/parks-and-recreation).
 
 ## Demo
 
-You can check out the working demo at [https://pawnee.prmr.ec](https://pawnee.prmr.ec).
+You can check out the working demo at [https://pawnee.prmr.ec](https://pawnee.prmr.ec). (UPDATE: no longer hosted)
 
 ## Setup
 
